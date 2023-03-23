@@ -7,6 +7,10 @@ const {
   deleteOrder,
 } = require("../controller/orderController");
 
+const { protect } = require("../middleware/authMiddleware");
+
+// add protect to order routes later on in development
+
 router.get("/", getOrders);
 
 router.post("/", setOrder);

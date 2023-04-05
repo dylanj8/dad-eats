@@ -13,7 +13,7 @@ const { protect } = require("../middleware/authMiddleware");
 
 router.get("/", getOrders);
 
-router.post("/", setOrder);
+router.post("/", protect, setOrder);
 
 router.put("/:id", editOrder);
 

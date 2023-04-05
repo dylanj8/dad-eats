@@ -15,6 +15,7 @@ const setOrder = asyncHandler(async (req, res) => {
   }
   const order = await Order.create({
     text: req.body.text,
+    user: req.user.id,
   });
   res.status(200).json({ message: "Setting order" });
 });

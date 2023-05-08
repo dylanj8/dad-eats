@@ -12,6 +12,20 @@ const orderSchema = mongoose.Schema(
       type: String,
       required: [true, "Please specify a food"],
     },
+
+    qty: {
+      type: String,
+      required: [true, "There needs to be atleast one meal ordered"],
+    },
+
+    date: {
+      type: String,
+      required: [true, "We need to know what date you ordered the meal"],
+    },
+
+    img: {
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -9,15 +9,24 @@ const getOrders = asyncHandler(async (req, res) => {
 });
 
 const setOrder = asyncHandler(async (req, res) => {
-  if (!req.body.text) {
+  if (!req.body.order || req.body.order.length === 0) {
     res.status(400);
-    throw new Error("Please enter text for your order");
+    throw new Error("Please enter at least one order");
   }
-  const order = await Order.create({
-    text: req.body.text,
-    user: req.user.id,
-  });
-  res.status(200).json({ message: "Setting order" });
+
+  const orders = req.body.order;
+
+  for (const order of orders) {
+    const newOrder = await Order.create({
+      text: order.name,
+      date: order.date,
+      qty: order.qty,
+      img: order.img,
+      user: req.user.id,
+    });
+  }
+
+  res.status(200).json({ message: "Orders submitted" });
 });
 
 const editOrder = asyncHandler(async (req, res) => {
